@@ -5,6 +5,6 @@
 	export let routes;
 </script>
 
-<main>
+<main class="main">
 	<Router {routes}/>
 </main>
