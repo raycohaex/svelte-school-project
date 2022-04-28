@@ -2,9 +2,11 @@
     let active = {
         uiLayerControlsMenuToggle: false
     }
+
+    let height = window.innerHeight;
 </script>
 
-<div class="ui-layer-controls {active.uiLayerControlsMenuToggle ? 'active' : ''}">
+<div class="ui-layer-controls {active.uiLayerControlsMenuToggle ? 'active' : ''}" style="height:{height}px;">
     <div class="ui-layer-controls-menu-toggle {active.uiLayerControlsMenuToggle ? 'active' : ''}" on:click={() => active.uiLayerControlsMenuToggle = !active.uiLayerControlsMenuToggle}></div>     
     <div class="ui-layer-controls-menu-container {active.uiLayerControlsMenuToggle ? 'active' : ''}">
         <div class="switch-app-category-container">

@@ -24,25 +24,24 @@
             });
 
         
-        var rotateDegrees = 0;
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", function(event) {
-                var rotateDegrees = event.alpha;
+            var rotateDegrees = 0;
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener("deviceorientation", function(event) {
+                    var rotateDegrees = event.alpha;
 
-                handleOrientationEvent(rotateDegrees);
-            }, true);
-        }
-
-        let heading = 0;
-
-        var handleOrientationEvent = rotateDegrees => {
-            if(Math.abs(heading - rotateDegrees) > 8) {
-                heading = rotateDegrees;
-                map.setHeading(rotateDegrees);
+                    handleOrientationEvent(rotateDegrees);
+                }, true);
             }
-        };
-    }
 
+            let heading = 0;
+
+            var handleOrientationEvent = rotateDegrees => {
+                if(Math.abs(heading - rotateDegrees) > 8) {
+                    heading = rotateDegrees;
+                    map.setHeading(rotateDegrees);
+                }
+            };
+        }
         window.initMap = initMap;
         
     </script>
