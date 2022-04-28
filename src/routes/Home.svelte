@@ -23,15 +23,19 @@
                 map: map,
             });
 
+        
+        var rotateDegrees = 0;
         if (window.DeviceOrientationEvent) {
             window.addEventListener("deviceorientation", function(event) {
+                var rotateDegrees = event.alpha;
+
                 handleOrientationEvent(rotateDegrees);
             }, true);
         }
 
         let heading = 0;
 
-        var handleOrientationEvent = function(rotateDegrees) {
+        var handleOrientationEvent = rotateDegrees => {
             if(Math.abs(heading - rotateDegrees) > 8) {
                 heading = rotateDegrees;
                 map.setHeading(rotateDegrees);
