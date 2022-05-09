@@ -4,7 +4,6 @@
 	import {mapmode} from './stores/mapstate';
 
 	export let routes;
-
 	let mapstate;
 
 	mapmode.subscribe(value => {
