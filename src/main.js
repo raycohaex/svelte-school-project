@@ -1,5 +1,6 @@
-import App from './App.svelte';
+import "./scss/main.scss";
 
+import App from './App.svelte';
 import Home from './routes/Home.svelte'
 import Dashboard from './routes/Dashboard.svelte'
 import NotFound from './routes/NotFound.svelte'

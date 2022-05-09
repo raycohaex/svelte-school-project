@@ -1,0 +1,30 @@
+.main {
+    &.party {
+        .ui-layer-controls {
+            .ui-layer-controls-menu-container {
+                background: #0d1013;
+                .switch-app-category-container {
+                    .switch-app-category-button {
+                        &.active {
+                            background: linear-gradient(154.67deg, #CF69FF 16.06%, #6764D3 100%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.career {
+        .ui-layer-controls {
+            .ui-layer-controls-menu-container {
+                background: #e2f0ff;
+                .switch-app-category-container {
+                    .switch-app-category-button {
+                        &.active {
+                            background: linear-gradient(154.67deg, #3c59ff 16.06%, #3258ff 100%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
