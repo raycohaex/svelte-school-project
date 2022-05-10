@@ -32,27 +32,27 @@
             }
         }
 
-                var rotateDegrees = 0;
-                if (window.DeviceOrientationEvent) {
-                    window.addEventListener("deviceorientation", function(event) {
-                        var rotateDegrees = event.alpha;
+        var rotateDegrees = 0;
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", function(event) {
+                var rotateDegrees = event.alpha;
 
-                        handleOrientationEvent(rotateDegrees);
-                    }, true);
-                }
+                handleOrientationEvent(rotateDegrees);
+            }, true);
+        }
 
-                let heading = 0;
+        let heading = 0;
 
-                var handleOrientationEvent = rotateDegrees => {
-                    if(Math.abs(heading - rotateDegrees) > 15) {
-                        heading = rotateDegrees;
-                        
-                        mapCollection.forEach(_m => {
-                            _m.setHeading(rotateDegrees);
-                        });
-                        
-                    }
-                };
+        var handleOrientationEvent = rotateDegrees => {
+            if(Math.abs(heading - rotateDegrees) > 15) {
+                heading = rotateDegrees;
+                mapCollection.forEach((_m, i) => {
+                    if(i === mapstate.tag){
+                        _m.setHeading(rotateDegrees);
+                    }                            
+                });
+            }
+        };
 
         onMount(async () => {
             window.initMap = initCasualMap;
@@ -61,6 +61,7 @@
             }
             
         });
+        
 
         mapmode.subscribe(value => {
             mapstate = value;
