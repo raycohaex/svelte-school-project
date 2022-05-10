@@ -26,7 +26,7 @@
                     },
                     zoom: 17,
                     heading: 0,
-                    tilt: 45,
+                    tilt: 55,
                     mapId: _map.dataset.mapid
                 });
             }
