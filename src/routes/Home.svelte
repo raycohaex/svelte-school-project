@@ -1,55 +1,32 @@
     <script>
-        import MapUI from './../components/MapUI.svelte'
+        import MapUI from './../components/MapUI.svelte';
+        import MapParty from '../components/MapParty.svelte';
+        import MapCareer from '../components/MapCareer.svelte';
+        import MapCasual from '../components/MapCasual.svelte';
+        import {mapmode} from './../stores/mapstate';
 
-        // Initialize and add the map
-        function initMap() {
-            const uluru = { lat: -25.344, lng: 131.031 };
-            // The map, centered at Uluru
-            const map = new google.maps.Map(document.getElementById("map"), {
-                disableDefaultUI: true,
-                zoom: 4,
-                center: {
-                    lat: 51.4339328,
-                    lng: 5.4669052
-                },
-                zoom: 17,
-                heading: 0,
-                tilt: 45,
-                mapId: "f4792ebdc438caa1"
-            });
-            // The marker, positioned at Uluru
-            const marker = new google.maps.Marker({
-                position: uluru,
-                map: map,
-            });
+        let mapstate;
 
-        
-            var rotateDegrees = 0;
-            if (window.DeviceOrientationEvent) {
-                window.addEventListener("deviceorientation", function(event) {
-                    var rotateDegrees = event.alpha;
-
-                    handleOrientationEvent(rotateDegrees);
-                }, true);
-            }
-
-            let heading = 0;
-
-            var handleOrientationEvent = rotateDegrees => {
-                if(Math.abs(heading - rotateDegrees) > 8) {
-                    heading = rotateDegrees;
-                    map.setHeading(rotateDegrees);
-                }
-            };
-        }
-        window.initMap = initMap;
-        
+        mapmode.subscribe(value => {
+            mapstate = value;
+        });
     </script>
     <!--The div element for the map -->
     <MapUI/>
 
     <div class="map-wrapper">
-        <div id="map"></div>
+    
+        {#if mapstate.tag == 0}
+        <MapParty/>
+        {:else if mapstate.tag == 1}
+        <MapCareer/>
+        {:else if mapstate.tag == 2}
+        <MapCasual/>
+        {/if}
+        
+        
+       
+
     </div>
 
     <!-- 
