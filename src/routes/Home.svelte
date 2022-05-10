@@ -3,29 +3,78 @@
         import MapParty from '../components/MapParty.svelte';
         import MapCareer from '../components/MapCareer.svelte';
         import MapCasual from '../components/MapCasual.svelte';
+        import { onDestroy, onMount } from 'svelte';
         import {mapmode} from './../stores/mapstate';
 
         let mapstate;
 
+        var mapCollection = [];
+        var markers = [];
+
+        function initCasualMap() {
+            var maps = document.getElementsByClassName("map-component");
+
+            // The map, centered at Uluru
+            for(var i=0; i<maps.length; i++) {
+                let _map = document.getElementById(maps[i].id);
+                mapCollection[i] = new google.maps.Map(_map, {
+                    disableDefaultUI: true,
+                    zoom: 4,
+                    center: {
+                        lat: 51.4339328,
+                        lng: 5.4669052
+                    },
+                    zoom: 17,
+                    heading: 0,
+                    tilt: 45,
+                    mapId: _map.dataset.mapid
+                });
+            }
+        }
+
+                var rotateDegrees = 0;
+                if (window.DeviceOrientationEvent) {
+                    window.addEventListener("deviceorientation", function(event) {
+                        var rotateDegrees = event.alpha;
+
+                        handleOrientationEvent(rotateDegrees);
+                    }, true);
+                }
+
+                let heading = 0;
+
+                var handleOrientationEvent = rotateDegrees => {
+                    if(Math.abs(heading - rotateDegrees) > 15) {
+                        heading = rotateDegrees;
+                        
+                        mapCollection.forEach(_m => {
+                            _m.setHeading(rotateDegrees);
+                        });
+                        
+                    }
+                };
+
+        onMount(async () => {
+            window.initMap = initCasualMap;
+            if(window.google) {
+                initCasualMap();
+            }
+            
+        });
+
         mapmode.subscribe(value => {
             mapstate = value;
         });
+
     </script>
     <!--The div element for the map -->
     <MapUI/>
 
     <div class="map-wrapper">
     
-        {#if mapstate.tag == 0}
-        <MapParty/>
-        {:else if mapstate.tag == 1}
-        <MapCareer/>
-        {:else if mapstate.tag == 2}
-        <MapCasual/>
-        {/if}
-        
-        
-       
+        <MapParty show={mapstate.tag == 0 ? true : false}/>
+        <MapCareer show={mapstate.tag == 1 ? true : false}/>
+        <MapCasual show={mapstate.tag == 2 ? true : false}/>
 
     </div>
 

@@ -96,6 +96,14 @@
         left: 0;
         width: 100%;
         height: calc(100vh + 50px);
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(1.3);
+        &.show {
+            visibility: visible !important;
+            pointer-events: all;
+            transform: scale(1);
+        }
     }
     &:after {
         content: '';
