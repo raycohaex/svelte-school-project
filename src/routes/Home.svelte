@@ -17,6 +17,7 @@
             // The map, centered at Uluru
             for(var i=0; i<maps.length; i++) {
                 let _map = document.getElementById(maps[i].id);
+                let _bgColor = _map.dataset.backgroundcolor || '#ffffff';
                 mapCollection[i] = new google.maps.Map(_map, {
                     disableDefaultUI: true,
                     zoom: 4,
@@ -26,8 +27,10 @@
                     },
                     zoom: 17,
                     heading: 0,
+                    draggable: false,
                     tilt: 55,
-                    mapId: _map.dataset.mapid
+                    mapId: _map.dataset.mapid,
+                    backgroundColor: _bgColor
                 });
             }
         }

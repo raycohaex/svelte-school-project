@@ -26,6 +26,9 @@
 .main {
     &.party {
         .ui-layer-controls {
+            &.active {
+                background-color: rgba(#fff, 0.15);
+            }
             .ui-layer-controls-menu-container {
                 background: #0d1013;
                 .switch-app-category-container {
@@ -37,8 +40,8 @@
                     }
                 }
                 .select-range {
-                    background-color: rgba(rgba(255, 255, 255, 0.24), 0.2);
-                    border: 1px solid rgba(rgba(255, 255, 255, 0.705), 0.7);
+                    background-color: rgba(255, 255, 255, 0.24);
+                    border: 1px solid rgba(255, 255, 255, 0.705);
                     color: #fff;
                 }
             }
@@ -66,8 +69,11 @@
     }
     &.career {
         .ui-layer-controls {
+            &.active {
+                background-color: rgba(#fff, 0.55);
+            }
             .ui-layer-controls-menu-container {
-                background: #e2f0ff;
+                background: #D0DEF4;
                 .switch-app-category-container {
                     .switch-app-category-button {
                         &.active {
@@ -104,8 +110,11 @@
     }
     &.casual {
         .ui-layer-controls {
+            &.active {
+                background-color: rgba(#fff, 0.55);
+            }
             .ui-layer-controls-menu-container {
-                background: #fff3e2;
+                background: #F4E4D0;
                 .switch-app-category-container {
                     .switch-app-category-button {
                         &.active {
