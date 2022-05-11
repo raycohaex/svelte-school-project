@@ -3,11 +3,12 @@
         import MapParty from '../components/MapParty.svelte';
         import MapCareer from '../components/MapCareer.svelte';
         import MapCasual from '../components/MapCasual.svelte';
+        import { doc, getDoc, getFirestore } from "firebase/firestore";
         import { onDestroy, onMount } from 'svelte';
+        import { initializeApp } from "firebase/app";
         import {mapmode} from './../stores/mapstate';
 
         let mapstate;
-
         var mapCollection = [];
         var markers = [];
 
@@ -63,6 +64,15 @@
                 initCasualMap();
             }
             
+            // const docRef = doc(db, "locations", "SF");
+            // const docSnap = await getDoc(docRef);
+
+            // if (docSnap.exists()) {
+            // console.log("Document data:", docSnap.data());
+            // } else {
+            // // doc.data() will be undefined in this case
+            // console.log("No such document!");
+            // }
         });
         
 
