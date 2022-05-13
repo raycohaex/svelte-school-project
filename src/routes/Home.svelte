@@ -3,6 +3,7 @@
         import MapParty from '../components/MapParty.svelte';
         import MapCareer from '../components/MapCareer.svelte';
         import MapCasual from '../components/MapCasual.svelte';
+        import LocationPopup from '../components/LocationPopup.svelte';
         import { onDestroy, onMount } from 'svelte';
         import { db } from './../firebase';
         import { doc, getDoc } from "firebase/firestore";
@@ -102,6 +103,7 @@
     <!--The div element for the map -->
     <MapUI/>
 
+    <LocationPopup/>
     <div class="map-wrapper">
     
         <MapParty show={mapstate.tag == 0 ? true : false}/>
