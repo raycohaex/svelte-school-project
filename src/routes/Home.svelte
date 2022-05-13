@@ -3,16 +3,28 @@
         import MapParty from '../components/MapParty.svelte';
         import MapCareer from '../components/MapCareer.svelte';
         import MapCasual from '../components/MapCasual.svelte';
-        import { doc, getDoc, getFirestore } from "firebase/firestore";
         import { onDestroy, onMount } from 'svelte';
-        import { initializeApp } from "firebase/app";
+        import { db } from './../firebase';
+        import { doc, getDoc } from "firebase/firestore";
         import {mapmode} from './../stores/mapstate';
 
         let mapstate;
         var mapCollection = [];
         var markers = [];
 
-        function initCasualMap() {
+        const addMarker = (_location, _map, _data = null) => {
+            let marker = new google.maps.Marker({
+                position: _location,
+                map: _map,
+                data: _data
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                console.log(marker.data);
+            });
+        }
+
+        function initMap() {
             var maps = document.getElementsByClassName("map-component");
 
             // The map, centered at Uluru
@@ -34,6 +46,7 @@
                     backgroundColor: _bgColor
                 });
             }
+
         }
 
         var rotateDegrees = 0;
@@ -59,20 +72,25 @@
         };
 
         onMount(async () => {
-            window.initMap = initCasualMap;
+            window.initMap = initMap;
             if(window.google) {
                 initCasualMap();
             }
-            
-            // const docRef = doc(db, "locations", "SF");
-            // const docSnap = await getDoc(docRef);
-
-            // if (docSnap.exists()) {
-            // console.log("Document data:", docSnap.data());
-            // } else {
-            // // doc.data() will be undefined in this case
-            // console.log("No such document!");
-            // }
+            db.collection("locations")
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        addMarker(new google.maps.LatLng(
+                            doc.data().location._lat,doc.data().location._long), 
+                            mapCollection[doc.data().locationType],
+                            doc.data())
+                        console.log(doc.id, " => ", doc.data());
+                    });
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
         });
         
 
