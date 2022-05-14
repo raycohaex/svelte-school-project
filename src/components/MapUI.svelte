@@ -1,12 +1,17 @@
 <script>
     import {mapmode, enums, states} from './../stores/mapstate'; 
+    import { onMount } from 'svelte';
     let active = {
         uiLayerControlsMenuToggle: false
     }
 
     let height = window.innerHeight;
-
+    
     let mapstate;
+
+    onMount(async () => {
+		height = window.innerHeight;
+	});
 
     mapmode.subscribe(value => {
         mapstate = value;

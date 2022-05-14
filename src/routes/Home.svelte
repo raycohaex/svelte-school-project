@@ -6,22 +6,48 @@
         import LocationPopup from '../components/LocationPopup.svelte';
         import { onDestroy, onMount } from 'svelte';
         import { db } from './../firebase';
-        import { doc, getDoc } from "firebase/firestore";
+        import { doc, getDoc, Timestamp } from "firebase/firestore";
         import {mapmode} from './../stores/mapstate';
 
         let mapstate;
         var mapCollection = [];
         var markers = [];
 
+        let bindName;
+        let bindEvents;
+        let bindActive;
+
         const addMarker = (_location, _map, _data = null) => {
             let marker = new google.maps.Marker({
                 position: _location,
                 map: _map,
-                data: _data
+                data: _data,
+                icon: {
+                    url: 'marker.png',
+                    size: new google.maps.Size(50, 50),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(25, 45),
+                },
+                label: {
+                    text: _data.name,
+                    className: 'marker-position'
+                }
             });
 
             google.maps.event.addListener(marker, 'click', function() {
+                bindEvents = [];
                 console.log(marker.data);
+                bindName = marker.data.name
+                marker.data.events.forEach(_event => {
+                    bindEvents.push({
+                    name: _event.event_name,
+                    image: _event.event_photo,
+                    startDate: _event.event_start_date.toDate().toLocaleDateString('nl-NL'),
+                    entry: _event.event_entry,
+                    description: _event.event_description
+                    })
+                });
+                bindActive = true;
             });
         }
 
@@ -103,7 +129,12 @@
     <!--The div element for the map -->
     <MapUI/>
 
-    <LocationPopup/>
+    <LocationPopup 
+        bind:locationName={bindName}
+        bind:events={bindEvents}
+        bind:active={bindActive}
+    />
+
     <div class="map-wrapper">
     
         <MapParty show={mapstate.tag == 0 ? true : false}/>
