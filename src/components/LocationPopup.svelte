@@ -31,8 +31,6 @@
             slidesPerView={1}
             on:slideChange={() => console.log('slide change')}
             on:swiper={(e) => console.log(e.detail[0])}
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
             style="width: 100%;"
             >
                 {#each events as event}
