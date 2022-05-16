@@ -1,0 +1,401 @@
+.map-wrapper {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    .map-component {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh + 50px);
+        transition: 700ms;
+        visibility: hidden;
+        pointer-events: none;
+        opacity: 0;
+
+        &.show {
+            visibility: visible !important;
+            pointer-events: all;
+            opacity: 1;
+        }
+    }
+}
+
+.main {
+    &.party {
+        .ui-layer-controls {
+            &.active {
+                background-color: rgba(#fff, 0.15);
+            }
+
+            .ui-layer-controls-menu-container {
+                background: #0d1013;
+
+                .switch-app-category-container {
+                    .switch-app-category-button {
+                        &.active {
+                            background: linear-gradient(154.67deg, #CF69FF 16.06%, #6764D3 100%);
+                        }
+
+                    }
+                }
+
+                .select-range {
+                    background-color: rgba(255, 255, 255, 0.24);
+                    border: 1px solid rgba(255, 255, 255, 0.705);
+                    color: #fff;
+                }
+            }
+
+            .ui-layer-controls-menu-toggle {
+                background: #fff;
+
+                &:before,
+                &:after {
+                    background: #292f35;
+                }
+            }
+        }
+
+        .map-wrapper {
+            background: #404040;
+
+            &:after {
+                content: '';
+                width: 100%;
+                height: 380px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                pointer-events: none;
+                background: linear-gradient(0deg, rgba(#1f1f1f, 0.85) 20%, rgba(#1f1f1f, 0) 85%);
+            }
+        }
+
+        .marker-position {
+            color: #CF69FF !important;
+            font-size: 20px !important;
+            background: -webkit-linear-gradient(154.67deg, #CF69FF, #6764D3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 3px #000);
+            font-weight: 600;
+            margin-top: 55px;
+        }
+    }
+
+    &.career {
+        .ui-layer-controls {
+            &.active {
+                background-color: rgba(#fff, 0.55);
+            }
+
+            .ui-layer-controls-menu-container {
+                background: #D0DEF4;
+
+                .switch-app-category-container {
+                    .switch-app-category-button {
+                        &.active {
+                            background: linear-gradient(154.67deg, #3c59ff 16.06%, #3258ff 100%);
+                        }
+                    }
+                }
+
+                .select-range {
+                    background-color: rgba(41, 47, 53, 0.15);
+                    border: 1px solid #292f35;
+                    color: #292f35;
+                }
+            }
+
+            .ui-layer-controls-menu-toggle {
+                background: #292f35;
+
+                &:before,
+                &:after {
+                    background: #fff;
+                }
+            }
+        }
+
+        .map-wrapper {
+            &:after {
+                content: '';
+                width: 100%;
+                height: 380px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                pointer-events: none;
+                background: linear-gradient(0deg, rgba(#ffffff, 0.85) 20%, rgba(#ffffff, 0) 85%);
+            }
+        }
+
+        .marker-position {
+            color: #fff !important;
+            background: #3c59ff;
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 16px !important;
+            font-weight: 600;
+            margin-top: 55px;
+        }
+    }
+
+    &.casual {
+        .ui-layer-controls {
+            &.active {
+                background-color: rgba(#fff, 0.55);
+            }
+
+            .ui-layer-controls-menu-container {
+                background: #F4E4D0;
+
+                .switch-app-category-container {
+                    .switch-app-category-button {
+                        &.active {
+                            background: linear-gradient(154.67deg, #ffdb3c 16.06%, #ffa632 100%);
+                        }
+                    }
+                }
+
+                .select-range {
+                    background-color: rgba(41, 47, 53, 0.15);
+                    border: 1px solid #292f35;
+                    color: #292f35;
+                }
+            }
+
+            .ui-layer-controls-menu-toggle {
+                background: #292f35;
+
+                &:before,
+                &:after {
+                    background: #fff;
+                }
+            }
+        }
+
+        .map-wrapper {
+            background: #404040;
+
+            &:after {
+                content: '';
+                width: 100%;
+                height: 380px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                pointer-events: none;
+                background: linear-gradient(0deg, rgba(#ffffff, 0.85) 20%, rgba(#ffffff, 0) 85%);
+            }
+        }
+    }
+}
+
+
+.main {
+    &.party {
+        .location-popup-wrapper {
+            .location-popup {
+                background-color: #181C20;
+                color: rgba(#fff, 0.85);
+
+                header {
+                    .drag-indicator {
+                        background: white;
+                    }
+
+                    h2 {
+                        color: #fff;
+                    }
+                }
+
+                .event-name {
+                    color: #fff;
+                }
+
+                footer {
+                    .event-info {
+
+                        .event-date,
+                        .event-entry {
+                            svg {
+                                fill: rgba(#fff, 0.8);
+                            }
+                        }
+                    }
+
+                    .route-button {
+                        background: linear-gradient(154.67deg, #CF69FF 16.06%, #6764D3 100%);
+                        color: #fff;
+                    }
+                }
+
+            }
+        }
+    }
+    &.career {
+        .location-popup-wrapper {
+            &.active {
+                background: rgba(#181C20, 0.4);
+            }
+            .location-popup {
+                background-color: #fff;
+                color: rgba(#181C20, 0.85);
+
+                header {
+                    .drag-indicator {
+                        background: rgba(#181C20, 0.35);
+                    }
+
+                    h2 {
+                        color: #181C20;
+                    }
+                }
+
+                .event-name {
+                    color: #181C20;
+                }
+
+                footer {
+                    .event-info {
+
+                        .event-date,
+                        .event-entry {
+                            svg {
+                                fill: rgba(#181C20, 0.8);
+                            }
+                        }
+                    }
+
+                    .route-button {
+                        background: linear-gradient(154.67deg, #3459ff 16.06%, #2c4bff 100%);
+                        color: #fff;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+
+.location-popup-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 9999999999999;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    display: flex;
+    align-items: flex-end;
+    transition: 250ms;
+
+    .location-popup {
+        height: 0;
+        opacity: 0;
+        width: 100%;
+        padding: 0 30px 30px 30px;
+        border-radius: 25px 25px 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: 250ms;
+        transition-delay: 100ms;
+
+        header {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 30px 40px 30px;
+            width: 100%;
+
+            .drag-indicator {
+                width: 60px;
+                height: 4px;
+                border-radius: 10px;
+                opacity: 0.3;
+                margin-bottom: 12px;
+            }
+
+            h2 {
+                margin: 0;
+                font-size: 1.8em;
+            }
+        }
+
+        img {
+            max-height: 350px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .event-name {
+            font-size: 20px;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+
+        .event-description {
+            text-align: center;
+            margin: 5px 0 25px;
+        }
+
+        footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0 0;
+
+            .event-info {
+
+                .event-date,
+                .event-entry {
+                    display: flex;
+                    align-items: center;
+                    width: 130px;
+                    margin-bottom: 5px;
+
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .route-button {
+                all: unset;
+                padding: 14px 25px;
+                border-radius: 8px;
+                align-items: center;
+                margin: auto 0 0;
+                text-transform: uppercase;
+                font-size: 14px;
+            }
+        }
+    }
+
+    &.active {
+        background: rgba(#fff, 0.3);
+        pointer-events: all;
+
+        .location-popup {
+            height: 65%;
+            opacity: 1;
+        }
+    }
+}
